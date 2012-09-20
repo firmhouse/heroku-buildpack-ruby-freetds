@@ -196,9 +196,9 @@ private
     set_env_default  "GEM_PATH", "$HOME/#{slug_vendor_base}"
     set_env_default  "LANG",     "en_US.UTF-8"
     set_env_override "PATH",     "$HOME/bin:$HOME/#{slug_vendor_base}/bin:$PATH"
-    set_env_default "LIBRARY_PATH", "vendor/freetds/lib:$LIBRARY_PATH"
-    set_env_default "CPATH", "vendor/freetds/include:$CPATH"
-    set_env_default "CPPATH", "vendir/freetds/include:$CPPATH"
+    set_env_override "LIBRARY_PATH", "vendor/freetds/lib:$LIBRARY_PATH"
+    set_env_override "CPATH", "vendor/freetds/include:$CPATH"
+    set_env_override "CPPATH", "vendir/freetds/include:$CPPATH"
 
     if ruby_version_jruby?
       set_env_default "JAVA_OPTS", default_java_opts

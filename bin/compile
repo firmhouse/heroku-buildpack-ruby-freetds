@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-`mkdir -p $1/vendor/freetds`
-`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C $1/vendor/freetds -f -`
+`mkdir -p #{ARGV[1]}/vendor/freetds`
+`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{ARGV[1]}/vendor/freetds -f -`
 
-`gem install tiny_tds -- --with-free-tds-dir=$1/vendor/freetds`
+`gem install tiny_tds -- --with-free-tds-dir=#{ARGV[1]}/vendor/freetds`
 
 # sync output
 $stdout.sync = true

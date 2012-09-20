@@ -387,6 +387,7 @@ ERROR
         install_libyaml(libyaml_dir)
 
         freetds_dir = "#{tmpdir}/freetds"
+        Dir.mkdir_p(freetds_dir)
         `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{tmpdir}/freetds -f -`
         freetds_include = File.expand_path("#{freetds_dir}/include")
         freetds_lib = File.expand_path("#{freetds_dir}/lib")

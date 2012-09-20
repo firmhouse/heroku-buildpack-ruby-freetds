@@ -386,13 +386,18 @@ ERROR
         libyaml_dir = "#{tmpdir}/#{LIBYAML_PATH}"
         install_libyaml(libyaml_dir)
 
+        freetds_dir = "#{tmpdir}/freetds"
+        `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{tmpdir}/freetds -f -`
+        freetds_include = File.expand_path("#{freetds_dir}/include")
+        freetds_lib = File.expand_path("#{freetds_dir}/lib")
+
         # need to setup compile environment for the psych gem
         yaml_include   = File.expand_path("#{libyaml_dir}/include")
         yaml_lib       = File.expand_path("#{libyaml_dir}/lib")
         pwd            = run("pwd").chomp
         # we need to set BUNDLE_CONFIG and BUNDLE_GEMFILE for
         # codon since it uses bundler.
-        env_vars       = "env BUNDLE_GEMFILE=#{pwd}/Gemfile BUNDLE_CONFIG=#{pwd}/.bundle/config CPATH=#{yaml_include}:/app/tmp/repo.git/.cache/vendor/freetds:$CPATH CPPATH=#{yaml_include}:$CPPATH LIBRARY_PATH=#{yaml_lib}:/app/tmp/repo.git/.cache/vendor/freetds:$LIBRARY_PATH RUBYOPT=\"#{syck_hack}\""
+        env_vars       = "env BUNDLE_GEMFILE=#{pwd}/Gemfile BUNDLE_CONFIG=#{pwd}/.bundle/config CPATH=#{yaml_include}:#{freetds_include}:$CPATH CPPATH=#{freetds_include}:#{yaml_include}:$CPPATH LIBRARY_PATH=#{freetds_lib}:#{yaml_lib}:$LIBRARY_PATH RUBYOPT=\"#{syck_hack}\""
         puts "Running: #{bundle_command}"
         bundler_output << pipe("#{env_vars} #{bundle_command} --no-clean 2>&1")
 

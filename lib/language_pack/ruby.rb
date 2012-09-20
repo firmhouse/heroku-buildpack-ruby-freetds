@@ -384,7 +384,6 @@ ERROR
       bundler_output = ""
       Dir.mktmpdir("libyaml-") do |tmpdir|
         libyaml_dir = "#{tmpdir}/#{LIBYAML_PATH}"
-        puts libyaml_dir
         install_libyaml(libyaml_dir)
 
         # need to setup compile environment for the psych gem
@@ -393,7 +392,7 @@ ERROR
         pwd            = run("pwd").chomp
         # we need to set BUNDLE_CONFIG and BUNDLE_GEMFILE for
         # codon since it uses bundler.
-        env_vars       = "env BUNDLE_GEMFILE=#{pwd}/Gemfile BUNDLE_CONFIG=#{pwd}/.bundle/config CPATH=#{yaml_include}:$CPATH CPPATH=#{yaml_include}:$CPPATH LIBRARY_PATH=#{yaml_lib}:$LIBRARY_PATH RUBYOPT=\"#{syck_hack}\""
+        env_vars       = "env BUNDLE_GEMFILE=#{pwd}/Gemfile BUNDLE_CONFIG=#{pwd}/.bundle/config CPATH=#{yaml_include}:/app/tmp/repo.git/.cache/vendor/freetds:$CPATH CPPATH=#{yaml_include}:$CPPATH LIBRARY_PATH=#{yaml_lib}:/app/tmp/repo.git/.cache/vendor/freetds:$LIBRARY_PATH RUBYOPT=\"#{syck_hack}\""
         puts "Running: #{bundle_command}"
         bundler_output << pipe("#{env_vars} #{bundle_command} --no-clean 2>&1")
 

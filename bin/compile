@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
-puts "0:#{ARGV[0]} 1:#{ARGV[1]} 2:#{ARGV[2]}"
-puts "Installing freetds into #{ARGV[1]}/vendor/freetds"
+puts "Installing freetds into #{ARGV[0]}/vendor/freetds"
 
-`mkdir -p #{ARGV[1]}/vendor/freetds`
-
-`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{ARGV[1]}/vendor/freetds -f -`
+`mkdir -p #{ARGV[0]}/vendor/freetds`
+`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{ARGV[0]}/vendor/freetds -f -`
 
 # sync output
 $stdout.sync = true

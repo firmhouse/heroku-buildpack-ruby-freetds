@@ -384,6 +384,7 @@ ERROR
       bundler_output = ""
       Dir.mktmpdir("libyaml-") do |tmpdir|
         libyaml_dir = "#{tmpdir}/#{LIBYAML_PATH}"
+        puts libyaml_dir
         install_libyaml(libyaml_dir)
 
         # need to setup compile environment for the psych gem

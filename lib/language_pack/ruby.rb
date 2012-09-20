@@ -34,9 +34,9 @@ class LanguagePack::Ruby < LanguagePack::Base
       "PATH"     => default_path,
       "GEM_PATH" => slug_vendor_base,
       "LIBRARY_PATH" => "vendor/freetds/lib:$LIBRARY_PATH",
-      "CPATH" => "vendor/freetds/include:$CPATH",
-      "CPPATH" => "vendor/freetds/include:$CPPATH",
-      "LD_LIBRARY_PATH" => "vendor/freetds/lib:$LD_LIBRARY_PATH"
+      "CPATH" => "$HOME/vendor/freetds/include:$CPATH",
+      "CPPATH" => "$HOME/vendor/freetds/include:$CPPATH",
+      "LD_LIBRARY_PATH" => "$HOME/vendor/freetds/lib:$LD_LIBRARY_PATH"
     }
 
     ruby_version_jruby? ? vars.merge("JAVA_OPTS" => default_java_opts, "JRUBY_OPTS" => default_jruby_opts) : vars
@@ -70,7 +70,7 @@ private
   # the base PATH environment variable to be used
   # @return [String] the resulting PATH
   def default_path
-    "vendor/freetds/bin:bin:#{slug_vendor_base}/bin:/usr/local/bin:/usr/bin:/bin"
+    "$HOME/vendor/freetds/bin:bin:#{slug_vendor_base}/bin:/usr/local/bin:/usr/bin:/bin"
   end
 
   # the relative path to the bundler directory of gems
@@ -198,9 +198,9 @@ private
     set_env_default  "LANG",     "en_US.UTF-8"
     set_env_override "PATH",     "$HOME/bin:$HOME/#{slug_vendor_base}/bin:$PATH"
     set_env_override "LIBRARY_PATH", "vendor/freetds/lib:$LIBRARY_PATH"
-    set_env_override "CPATH", "vendor/freetds/include:$CPATH"
-    set_env_override "CPPATH", "vendor/freetds/include:$CPPATH"
-    set_env_override "LD_LIBRARY_PATH", "vendor/freetds/lib:$LD_LIBRARY_PATH"
+    set_env_override "CPATH", "$HOME/vendor/freetds/include:$CPATH"
+    set_env_override "CPPATH", "$HOME/vendor/freetds/include:$CPPATH"
+    set_env_override "LD_LIBRARY_PATH", "$HOME/vendor/freetds/lib:$LD_LIBRARY_PATH"
 
     if ruby_version_jruby?
       set_env_default "JAVA_OPTS", default_java_opts

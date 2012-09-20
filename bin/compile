@@ -3,9 +3,11 @@
 # sync output
 $stdout.sync = true
 
-puts "Installing freetds into #{ARGV[0]}"
-puts `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C /usr -f -`
-puts `ls -l /usr/lib`
+puts "Installing freetds into #{ARGV[0]}/vendor/freetds"
+puts `mkdir -p #{ARGV[0]}/vendor/freetds`
+puts `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{ARGV[0]}/vendor/freetds -f -`
+
+puts ENV.inspect
 
 $:.unshift File.expand_path("../../lib", __FILE__)
 require "language_pack"

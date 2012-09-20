@@ -7,7 +7,9 @@ puts "Installing freetds into #{ARGV[0]}/vendor/freetds"
 puts `mkdir -p #{ARGV[0]}/vendor/freetds`
 puts `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{ARGV[0]}/vendor/freetds -f -`
 
-puts ENV.inspect
+ENV['LIBRARY_PATH'] = "#{ARGV[0]}/vendor/freetds/lib:$LIBRARY_PATH"
+ENV['CPPATH'] = "#{ARGV[0]}/vendor/freetds/include:$CPPATH"
+ENV['CPATH'] = "#{ARGV[0]}/vendor/freetds/include:$CPATH"
 
 $:.unshift File.expand_path("../../lib", __FILE__)
 require "language_pack"

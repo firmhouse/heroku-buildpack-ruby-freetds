@@ -32,7 +32,7 @@ class LanguagePack::Ruby < LanguagePack::Base
     vars = {
       "LANG"     => "en_US.UTF-8",
       "PATH"     => default_path,
-      "GEM_PATH" => slug_vendor_base,
+      "GEM_PATH" => slug_vendor_base
     }
 
     ruby_version_jruby? ? vars.merge("JAVA_OPTS" => default_java_opts, "JRUBY_OPTS" => default_jruby_opts) : vars

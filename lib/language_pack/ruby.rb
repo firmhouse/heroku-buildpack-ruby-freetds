@@ -35,7 +35,8 @@ class LanguagePack::Ruby < LanguagePack::Base
       "GEM_PATH" => slug_vendor_base,
       "LIBRARY_PATH" => "vendor/freetds/lib:$LIBRARY_PATH",
       "CPATH" => "vendor/freetds/include:$CPATH",
-      "CPPATH" => "vendir/freetds/include:$CPPATH"
+      "CPPATH" => "vendor/freetds/include:$CPPATH",
+      "LD_LIBRARY_PATH" => "vendor/freetds/lib:$LD_LIBRARY_PATH"
     }
 
     ruby_version_jruby? ? vars.merge("JAVA_OPTS" => default_java_opts, "JRUBY_OPTS" => default_jruby_opts) : vars
@@ -198,7 +199,8 @@ private
     set_env_override "PATH",     "$HOME/bin:$HOME/#{slug_vendor_base}/bin:$PATH"
     set_env_override "LIBRARY_PATH", "vendor/freetds/lib:$LIBRARY_PATH"
     set_env_override "CPATH", "vendor/freetds/include:$CPATH"
-    set_env_override "CPPATH", "vendir/freetds/include:$CPPATH"
+    set_env_override "CPPATH", "vendor/freetds/include:$CPPATH"
+    set_env_override "LD_LIBRARY_PATH", "vendor/freetds/lib:$LD_LIBRARY_PATH"
 
     if ruby_version_jruby?
       set_env_default "JAVA_OPTS", default_java_opts

@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+`mkdir -p $1/vendor/freetds`
+`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C $1/vendor/freetds -f -`
+
+`gem install tiny_tds -- --with-free-tds-dir=$1/vendor/freetds`
+
 # sync output
 $stdout.sync = true
 
@@ -11,8 +16,3 @@ if pack = LanguagePack.detect(ARGV[0], ARGV[1])
     pack.compile
   end
 end
-
-`mkdir -p $1/vendor/freetds`
-`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C $1/vendor/freetds -f -`
-
-`gem install tiny_tds -- --with-free-tds-dir=$1/vendor/freetds`

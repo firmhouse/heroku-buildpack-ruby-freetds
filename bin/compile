@@ -1,12 +1,7 @@
 #!/usr/bin/env ruby
 
-puts "Installing freetds into #{ARGV[0]}/vendor/freetds"
-
-`mkdir -p #{ARGV[1]}`
-`curl ftp://ftp.astron.com/pub/freetds/stable/freetds-stable.tgz -s -o - | tar xzf - -C #{ARGV[1]}`
-`cp -r #{ARGV[1]}/freetds-0.91 #{ARGV[0]}/freetds`
-
-`cd #{ARGV[0]}/freetds; ./autogen.sh; ./configure --prefix=#{ARGV[0]} --disable-odbc --disable-apps --disable-server --disable-pool --enable-msdblib; make; make install`
+puts "Installing freetds into #{ARGV[0]}"
+`curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{ARGV[0]} -f -`
 
 # sync output
 $stdout.sync = true

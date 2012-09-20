@@ -33,10 +33,7 @@ class LanguagePack::Ruby < LanguagePack::Base
       "LANG"     => "en_US.UTF-8",
       "PATH"     => default_path,
       "GEM_PATH" => slug_vendor_base,
-      "LIBRARY_PATH" => "vendor/freetds/lib:$LIBRARY_PATH",
-      "CPATH" => "$HOME/vendor/freetds/include:$CPATH",
-      "CPPATH" => "$HOME/vendor/freetds/include:$CPPATH",
-      "LD_LIBRARY_PATH" => "$HOME/vendor/freetds/lib:$LD_LIBRARY_PATH"
+      "LD_LIBRARY_PATH" => "vendor/freetds/lib:$LD_LIBRARY_PATH"
     }
 
     ruby_version_jruby? ? vars.merge("JAVA_OPTS" => default_java_opts, "JRUBY_OPTS" => default_jruby_opts) : vars
@@ -197,10 +194,10 @@ private
     set_env_default  "GEM_PATH", "$HOME/#{slug_vendor_base}"
     set_env_default  "LANG",     "en_US.UTF-8"
     set_env_override "PATH",     "$HOME/bin:$HOME/#{slug_vendor_base}/bin:$PATH"
-    set_env_override "LIBRARY_PATH", "vendor/freetds/lib:$LIBRARY_PATH"
-    set_env_override "CPATH", "$HOME/vendor/freetds/include:$CPATH"
-    set_env_override "CPPATH", "$HOME/vendor/freetds/include:$CPPATH"
-    set_env_override "LD_LIBRARY_PATH", "$HOME/vendor/freetds/lib:$LD_LIBRARY_PATH"
+    # set_env_override "LIBRARY_PATH", "vendor/freetds/lib:$LIBRARY_PATH"
+    # set_env_override "CPATH", "$HOME/vendor/freetds/include:$CPATH"
+    # set_env_override "CPPATH", "$HOME/vendor/freetds/include:$CPPATH"
+    set_env_override "LD_LIBRARY_PATH", "vendor/freetds/lib:$LD_LIBRARY_PATH"
 
     if ruby_version_jruby?
       set_env_default "JAVA_OPTS", default_java_opts

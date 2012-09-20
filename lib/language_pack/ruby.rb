@@ -386,13 +386,13 @@ ERROR
         libyaml_dir = "#{tmpdir}/#{LIBYAML_PATH}"
         install_libyaml(libyaml_dir)
 
-        freetds_dir = "#{tmpdir}/freetds"
-        `mkdir -p #{tmpdir}/freetds`
+        # freetds_dir = "#{tmpdir}/freetds"
+        # `mkdir -p #{tmpdir}/freetds`
 
-        `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{tmpdir}/freetds -f -`
+        # `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C #{tmpdir}/freetds -f -`
 
-        freetds_include = File.expand_path("#{freetds_dir}/include")
-        freetds_lib = File.expand_path("#{freetds_dir}/lib")
+        # freetds_include = File.expand_path("#{freetds_dir}/include")
+        # freetds_lib = File.expand_path("#{freetds_dir}/lib")
 
         # need to setup compile environment for the psych gem
         yaml_include   = File.expand_path("#{libyaml_dir}/include")

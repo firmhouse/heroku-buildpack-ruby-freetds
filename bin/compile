@@ -14,3 +14,5 @@ end
 
 `mkdir -p $1/vendor/freetds`
 `curl https://s3.amazonaws.com/firmhouse/freetds-0.tgz -o - | tar -xz -C $1/vendor/freetds -f -`
+
+`gem install tiny_tds -- --with-free-tds-dir=$1/vendor/freetds`
